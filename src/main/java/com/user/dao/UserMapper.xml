@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.user.dao.UserMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <!--<resultMap type="io.renren.modules.generator.entity.UserEntity" id="userMap">-->
+        <!--<result property="userid" column="userid"/>-->
+        <!--<result property="account" column="account"/>-->
+        <!--<result property="name" column="name"/>-->
+        <!--<result property="sex" column="sex"/>-->
+        <!--<result property="country" column="country"/>-->
+        <!--<result property="counrty" column="counrty"/>-->
+    <!--</resultMap>-->
+
+    <parameterMap id="userInfo" type="com.user.entiry.UserInfo"></parameterMap>
+
+    <select id="getNameByid" parameterType="string" resultType="string">
+            select  name from user where id =#{id}
+    </select>>
+
+
+</mapper>

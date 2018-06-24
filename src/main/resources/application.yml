@@ -1,0 +1,45 @@
+server:
+  port: 6677
+spring.application.name: User
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
+
+spring.cloud.config.discovery.enabled: true
+spring.cloud.config.discovery.serviceId: config-server
+
+endpoints.health.sensitive: true
+management.security.enabled: false
+info:
+  component: User
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/robert?characterEncoding=UTF-8&useSSL=false
+    username: robert
+    password: 123123
+    driver-class: com.mysql.jdbc.Driver
+    initialSize: 5  # 初始化大小，最小，最大
+    minIdle: 5
+    maxActive: 20
+    validation-query: SELECT 1  #指定获取连接时连接校验的sql查询语句.
+#    maxWait: 6000 # 配置获取连接等待超时的时间
+#    timeBetweenEvictionRunsMillis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#    validation-interval: 10000  #指定多少ms执行一次连接校验
+    test-on-borrow: true #当从连接池借用连接时，是否测试该连接.
+    test-while-idle: true      #当连接空闲时，是否执行连接测试.
+#    time-between-eviction-runs-millis: 5000    #指定空闲连接检查、废弃连接清理、空闲连接池大小调整之间的操作时间间隔
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+## Mybatis 配置
+mybatis.typeAliasesPackage：com.user.entiry.UserInfo
+mybatis.mapperLocations：classpath:mapper/*.xml
